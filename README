@@ -1,5 +1,10 @@
 Basho quick demo.
 
+To install:
+virtualenv flask
+pip install flask
+pip install riak
+
 To test the POST:
 curl -i -H "Content-Type: application/json" -X POST -d '{"sender":"Nicholas", "recipient":"Somebody"}' http://localhost:5000/message
 
