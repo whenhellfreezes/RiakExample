@@ -1,0 +1,3 @@
+six >= 1.8.0
+pyOpenSSL >= 0.14
+riak_pb >=2.0.0
