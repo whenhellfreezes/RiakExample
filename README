@@ -40,3 +40,19 @@ Date: Tue, 06 Oct 2015 20:58:25 GMT
     "sender": "Nicholas"
   }
 }%
+
+curl -i -H "Content-Type: application/json" -X POST -d '{"key":0, "body":"Filler"}' http://localhost:5000/message/reply
+HTTP/1.0 201 CREATED
+Content-Type: application/json
+Content-Length: 146
+Server: Werkzeug/0.10.4 Python/2.7.6
+Date: Tue, 06 Oct 2015 23:53:45 GMT
+
+{
+  "message": {
+    "body": "Filler\n-------\n|Reply|\n-------\n\n",
+    "key": 0,
+    "recipient": "Nicholas",
+    "sender": "Somebody"
+  }
+}%
