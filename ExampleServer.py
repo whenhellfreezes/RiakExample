@@ -24,7 +24,7 @@ class SimpleMessage:
 @messageStack.route('/message/<int:keyID>', methods=['GET'])
 def get_message(keyID):
     fetch = myBucket.get(str(keyID))
-    if (fetch is None):
+    if (fetch.data is None):
         abort(404)
     return jsonify({'message': fetch.data})
 
