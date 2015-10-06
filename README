@@ -1,1 +1,37 @@
 Basho quick demo.
+
+To test the POST:
+curl -i -H "Content-Type: application/json" -X POST -d '{"sender":"Nicholas", "recipient":"Somebody"}' http://localhost:5000/message
+
+HTTP/1.0 201 CREATED
+Content-Type: application/json
+Content-Length: 109
+Server: Werkzeug/0.10.4 Python/2.7.6
+Date: Tue, 06 Oct 2015 20:53:10 GMT
+
+{
+  "message": {
+    "body": "",
+    "key": 0,
+    "recipient": "Somebody",
+    "sender": "Nicholas"
+  }
+}%
+
+To test the GET:
+curl -i http://localhost:5000/message/0
+
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 109
+Server: Werkzeug/0.10.4 Python/2.7.6
+Date: Tue, 06 Oct 2015 20:58:25 GMT
+
+{
+  "message": {
+    "body": "",
+    "key": 0,
+    "recipient": "Somebody",
+    "sender": "Nicholas"
+  }
+}%
