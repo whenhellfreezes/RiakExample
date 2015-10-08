@@ -1,5 +1,3 @@
-import riak
-
 class SimpleMessage:
 
     def __init__(self, increment=True):
@@ -8,14 +6,14 @@ class SimpleMessage:
         self.body = "Message"
 
     def serialize(self):
-        return { 'sender': self.sender, 'recipient': self.recipient, 'body': self.body }
+        return { 'sender_s': self.sender, 'recipient_s': self.recipient, 'body_s': self.body }
 
     @classmethod
     def deserialize(other, serial):
         other = SimpleMessage(False)
-        other.sender = serial['sender']
-        other.recipient = serial['recipient']
-        other.body = serial['body']
+        other.sender = serial['sender_s']
+        other.recipient = serial['recipient_s']
+        other.body = serial['body_s']
         return other
 
     def reply(self, body):
@@ -25,5 +23,3 @@ class SimpleMessage:
         other.sender = self.recipient
         other.recipient = self.sender
         return other
-
-
