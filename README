@@ -5,54 +5,19 @@ virtualenv flask
 pip install flask
 pip install riak
 
-To test the POST:
-curl -i -H "Content-Type: application/json" -X POST -d '{"sender":"Nicholas", "recipient":"Somebody"}' http://localhost:5000/message
+This project runs a small REST server:
+View function
+host:port/message/<key>  (HTTP GET)
 
-HTTP/1.0 201 CREATED
-Content-Type: application/json
-Content-Length: 109
-Server: Werkzeug/0.10.4 Python/2.7.6
-Date: Tue, 06 Oct 2015 20:53:10 GMT
+create message
+host:port/message/  (HTTP POST)
+must send json for the sender and recipient with body optional
+will return the key for the message as well as the json for the message on success.
 
-{
-  "message": {
-    "body": "",
-    "key": 0,
-    "recipient": "Somebody",
-    "sender": "Nicholas"
-  }
-}%
+reply message
+host:port/message/reply (HTTP POST)
+must send json with the key of the original message and the new body to be added.
+will create a message with inverted sender/recipient and append old text after a seperator
 
-To test the GET:
-curl -i http://localhost:5000/message/0
-
-HTTP/1.0 200 OK
-Content-Type: application/json
-Content-Length: 109
-Server: Werkzeug/0.10.4 Python/2.7.6
-Date: Tue, 06 Oct 2015 20:58:25 GMT
-
-{
-  "message": {
-    "body": "",
-    "key": 0,
-    "recipient": "Somebody",
-    "sender": "Nicholas"
-  }
-}%
-
-curl -i -H "Content-Type: application/json" -X POST -d '{"key":0, "body":"Filler"}' http://localhost:5000/message/reply
-HTTP/1.0 201 CREATED
-Content-Type: application/json
-Content-Length: 146
-Server: Werkzeug/0.10.4 Python/2.7.6
-Date: Tue, 06 Oct 2015 23:53:45 GMT
-
-{
-  "message": {
-    "body": "Filler\n-------\n|Reply|\n-------\n\n",
-    "key": 1,
-    "recipient": "Nicholas",
-    "sender": "Somebody"
-  }
-}%
+delete message
+host:port/message/<key> (HTTP DELETE)
