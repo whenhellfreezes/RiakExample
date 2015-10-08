@@ -21,3 +21,10 @@ will create a message with inverted sender/recipient and append old text after a
 
 delete message
 host:port/message/<key> (HTTP DELETE)
+
+search
+bysender
+host:port/message/search/bysender/<sender>* (HTTP GET)
+
+byrecipient
+host:port/message/search/byrecipient/<recipient>* (HTTP GET)
